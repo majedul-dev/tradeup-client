@@ -21,9 +21,7 @@ const Register = ({ history }) => {
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/images/no-image.jpg");
 
-  const { isAuthenticated, loading, error } = useSelector(
-    (state) => state.auth
-  );
+  const { isAuthenticated, error } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -134,9 +132,10 @@ const Register = ({ history }) => {
           </div>
         </Form.Group>
         <Button
-          disabled={loading ? true : false}
+          // disabled={loading ? true : false}
           type="submit"
-          className={`button mt-3 ${loading ? "disabled" : ""}`}
+          // className={`button mt-3 ${loading ? "disabled" : ""}`}
+          className="button"
         >
           Register
         </Button>
