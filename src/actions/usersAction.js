@@ -7,12 +7,13 @@ import {
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAIL,
 } from "../constants/userConstants";
+import { URL } from "./url";
 
 export const getUserById = (id) => async (dispatch) => {
   try {
     dispatch({ type: USER_BYID_REQUEST });
 
-    const { data } = await axios.get(`/api/users/user/${id}`);
+    const { data } = await axios.get(`${URL}/api/users/user/${id}`);
 
     dispatch({
       type: USER_BYID_SUCCESS,
@@ -39,7 +40,7 @@ export const updateUser = (formData) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `/api/users/me/profile/update`,
+      `${URL}/api/users/me/profile/update`,
       formData,
       config
     );

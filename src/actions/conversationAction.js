@@ -10,6 +10,7 @@ import {
   GET_USERS_CONVERSATIONS_SUCCESS,
   GET_USERS_CONVERSATIONS_FAIL,
 } from "../constants/conversationConstants";
+import { URL } from "./url";
 
 export const createConversation = (members) => async (dispatch) => {
   try {
@@ -21,7 +22,11 @@ export const createConversation = (members) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(`/api/conversation`, members, config);
+    const { data } = await axios.post(
+      `${URL}/api/conversation`,
+      members,
+      config
+    );
 
     dispatch({ type: CREATE_CONVERSATION_SUCCESS, payload: data.conversation });
   } catch (error) {
@@ -36,7 +41,7 @@ export const allConversations = (userId) => async (dispatch) => {
   try {
     dispatch({ type: GET_CONVERSATIONS_REQUEST });
 
-    const { data } = await axios.get(`/api/conversation/${userId}`);
+    const { data } = await axios.get(`${URL}/api/conversation/${userId}`);
 
     dispatch({ type: GET_CONVERSATIONS_SUCCESS, payload: data.conversation });
   } catch (error) {
@@ -51,7 +56,7 @@ export const getUsersCoversations = (userId) => async (dispatch) => {
   try {
     dispatch({ type: GET_USERS_CONVERSATIONS_REQUEST });
 
-    const { data } = await axios.get(`/api/users/user/${userId}`);
+    const { data } = await axios.get(`${URL}/api/users/user/${userId}`);
 
     dispatch({ type: GET_USERS_CONVERSATIONS_SUCCESS, payload: data.user });
   } catch (error) {

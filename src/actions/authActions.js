@@ -14,6 +14,8 @@ import {
   LOGOUT_SUCCESS,
 } from "../constants/authConstants";
 
+import { URL } from "./url";
+
 // Login user
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -26,7 +28,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/auth/login",
+      `${URL}/api/auth/login`,
       { email, password },
       config
     );
@@ -52,7 +54,11 @@ export const register = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post("/api/auth/register", userData, config);
+    const { data } = await axios.post(
+      `${URL}/api/auth/register`,
+      userData,
+      config
+    );
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
     localStorage.setItem("userInfo", JSON.stringify(data.user));
@@ -69,7 +75,7 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get("/api/users/me");
+    const { data } = await axios.get(`${URL}/api/users/me`);
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
 
@@ -84,7 +90,7 @@ export const loadUser = () => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get("/api/auth/logout");
+    await axios.get(`${URL}/api/auth/logout`);
     dispatch({ type: LOGOUT_SUCCESS });
     localStorage.removeItem("userInfo");
   } catch (error) {

@@ -24,6 +24,7 @@ import {
   UPDATE_PRODUCT_FAIL,
   CLEAR_ERRORS,
 } from "../constants/productConstants";
+import { URL } from "./url";
 
 export const createProduct = (formData) => async (dispatch) => {
   try {
@@ -35,7 +36,11 @@ export const createProduct = (formData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(`/api/products/create`, formData, config);
+    const { data } = await axios.post(
+      `${URL}/api/products/create`,
+      formData,
+      config
+    );
 
     dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
@@ -52,10 +57,10 @@ export const getAllProducts =
     try {
       dispatch({ type: ALL_PRODUCTS_REQUEST });
 
-      let link = `/api/products/getall?keyword=${keyword}&page=${currentPage}`;
+      let link = `${URL}/api/products/getall?keyword=${keyword}&page=${currentPage}`;
 
       if (category) {
-        link = `/api/products/getall?keyword=${keyword}&page=${currentPage}&category=${category}`;
+        link = `${URL}/api/products/getall?keyword=${keyword}&page=${currentPage}&category=${category}`;
       }
 
       const { data } = await axios.get(link);
@@ -75,7 +80,9 @@ export const productDetailsAction = (productId) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/products/getsingle/${productId}`);
+    const { data } = await axios.get(
+      `${URL}/api/products/getsingle/${productId}`
+    );
 
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.product });
 
@@ -92,7 +99,7 @@ export const myProducts = () => async (dispatch) => {
   try {
     dispatch({ type: MY_PRODUCTS_REQUEST });
 
-    const { data } = await axios.get("/api/products/my");
+    const { data } = await axios.get(`${URL}/api/products/my`);
 
     dispatch({ type: MY_PRODUCTS_SUCCESS, payload: data.products });
   } catch (error) {
@@ -107,7 +114,7 @@ export const usersProducts = (userId) => async (dispatch) => {
   try {
     dispatch({ type: USERS_PRODUCTS_REQUEST });
 
-    const { data } = await axios.get(`/api/products/${userId}`);
+    const { data } = await axios.get(`${URL}/api/products/${userId}`);
 
     dispatch({ type: USERS_PRODUCTS_SUCCESS, payload: data.products });
   } catch (error) {
@@ -122,7 +129,7 @@ export const deleteProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    await axios.delete(`/api/products/delete/${productId}`);
+    await axios.delete(`${URL}/api/products/delete/${productId}`);
 
     dispatch({ type: DELETE_PRODUCT_SUCCESS });
   } catch (error) {
