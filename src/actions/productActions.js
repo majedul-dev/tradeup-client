@@ -24,7 +24,6 @@ import {
   UPDATE_PRODUCT_FAIL,
   CLEAR_ERRORS,
 } from "../constants/productConstants";
-import { URL } from "./url";
 
 export const createProduct = (formData) => async (dispatch) => {
   try {
@@ -37,7 +36,7 @@ export const createProduct = (formData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${URL}/api/products/create`,
+      `https://tradeupserver.herokuapp.com/api/products/create`,
       formData,
       config
     );
@@ -57,10 +56,10 @@ export const getAllProducts =
     try {
       dispatch({ type: ALL_PRODUCTS_REQUEST });
 
-      let link = `${URL}/api/products/getall?keyword=${keyword}&page=${currentPage}`;
+      let link = `https://tradeupserver.herokuapp.com/api/products/getall?keyword=${keyword}&page=${currentPage}`;
 
       if (category) {
-        link = `${URL}/api/products/getall?keyword=${keyword}&page=${currentPage}&category=${category}`;
+        link = `https://tradeupserver.herokuapp.com/api/products/getall?keyword=${keyword}&page=${currentPage}&category=${category}`;
       }
 
       const { data } = await axios.get(link);
@@ -81,7 +80,7 @@ export const productDetailsAction = (productId) => async (dispatch) => {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
     const { data } = await axios.get(
-      `${URL}/api/products/getsingle/${productId}`
+      `https://tradeupserver.herokuapp.com/api/products/getsingle/${productId}`
     );
 
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.product });
@@ -99,7 +98,9 @@ export const myProducts = () => async (dispatch) => {
   try {
     dispatch({ type: MY_PRODUCTS_REQUEST });
 
-    const { data } = await axios.get(`${URL}/api/products/my`);
+    const { data } = await axios.get(
+      `https://tradeupserver.herokuapp.com/api/products/my`
+    );
 
     dispatch({ type: MY_PRODUCTS_SUCCESS, payload: data.products });
   } catch (error) {
@@ -114,7 +115,9 @@ export const usersProducts = (userId) => async (dispatch) => {
   try {
     dispatch({ type: USERS_PRODUCTS_REQUEST });
 
-    const { data } = await axios.get(`${URL}/api/products/${userId}`);
+    const { data } = await axios.get(
+      `https://tradeupserver.herokuapp.com/api/products/${userId}`
+    );
 
     dispatch({ type: USERS_PRODUCTS_SUCCESS, payload: data.products });
   } catch (error) {
@@ -129,7 +132,9 @@ export const deleteProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    await axios.delete(`${URL}/api/products/delete/${productId}`);
+    await axios.delete(
+      `https://tradeupserver.herokuapp.com/api/products/delete/${productId}`
+    );
 
     dispatch({ type: DELETE_PRODUCT_SUCCESS });
   } catch (error) {
@@ -151,7 +156,7 @@ export const updateProduct = (formData, productId) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `/api/products/edit/${productId}`,
+      `https://tradeupserver.herokuapp.com/api/products/edit/${productId}`,
       formData,
       config
     );

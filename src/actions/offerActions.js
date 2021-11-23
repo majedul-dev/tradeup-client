@@ -20,7 +20,6 @@ import {
   TRACK_OFFER_FAIL,
   CLEAR_ERRORS,
 } from "../constants/offerConstants";
-import { URL } from "./url";
 
 export const createOfferAction = (formData, productId) => async (dispatch) => {
   try {
@@ -33,7 +32,7 @@ export const createOfferAction = (formData, productId) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${URL}/api/offers/${productId}`,
+      `https://tradeupserver.herokuapp.com/api/offers/${productId}`,
       formData,
       config
     );
@@ -52,7 +51,9 @@ export const myProductOffersAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: MY_PRODUCT_OFFERS_REQUEST });
 
-    const { data } = await axios.get(`${URL}/api/offers/my/${id}`);
+    const { data } = await axios.get(
+      `https://tradeupserver.herokuapp.com/api/offers/my/${id}`
+    );
 
     dispatch({ type: MY_PRODUCT_OFFERS_SUCCESS, payload: data });
     localStorage.setItem("productOffers", JSON.stringify(data));
@@ -68,7 +69,9 @@ export const offerDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: OFFER_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`${URL}/api/offers/${id}`);
+    const { data } = await axios.get(
+      `https://tradeupserver.herokuapp.com/api/offers/${id}`
+    );
 
     dispatch({ type: OFFER_DETAILS_SUCCESS, payload: data.offer });
     localStorage.setItem("offerDetails", JSON.stringify(data.offer));
@@ -84,7 +87,9 @@ export const myOffers = () => async (dispatch) => {
   try {
     dispatch({ type: MY_OFFERS_REQUEST });
 
-    const { data } = await axios.get(`${URL}/api/offers/myoffers`);
+    const { data } = await axios.get(
+      `https://tradeupserver.herokuapp.com/api/offers/myoffers`
+    );
 
     dispatch({ type: MY_OFFERS_SUCCESS, payload: data.offers });
     localStorage.setItem("myoffers", JSON.stringify(data.offers));
@@ -100,7 +105,7 @@ export const deleteOffer = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_OFFER_REQUEST });
 
-    await axios.delete(`${URL}/api/offers/${id}`);
+    await axios.delete(`https://tradeupserver.herokuapp.com/api/offers/${id}`);
 
     dispatch({ type: DELETE_OFFER_SUCCESS });
   } catch (error) {
@@ -121,7 +126,11 @@ export const trackOffer = (data, id) => async (dispatch) => {
       },
     };
 
-    await axios.put(`${URL}/api/offers/${id}`, data, config);
+    await axios.put(
+      `https://tradeupserver.herokuapp.com/api/offers/${id}`,
+      data,
+      config
+    );
 
     dispatch({ type: TRACK_OFFER_SUCCESS });
   } catch (error) {

@@ -14,8 +14,6 @@ import {
   LOGOUT_SUCCESS,
 } from "../constants/authConstants";
 
-import { URL } from "./url";
-
 // Login user
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -28,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${URL}/api/auth/login`,
+      `https://tradeupserver.herokuapp.com/api/auth/login`,
       { email, password },
       config
     );
@@ -55,7 +53,7 @@ export const register = (userData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${URL}/api/auth/register`,
+      `https://tradeupserver.herokuapp.com/api/auth/register`,
       userData,
       config
     );
@@ -75,7 +73,9 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get(`${URL}/api/users/me`);
+    const { data } = await axios.get(
+      `https://tradeupserver.herokuapp.com/api/users/me`
+    );
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
 
@@ -90,7 +90,7 @@ export const loadUser = () => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get(`${URL}/api/auth/logout`);
+    await axios.get(`https://tradeupserver.herokuapp.com/api/auth/logout`);
     dispatch({ type: LOGOUT_SUCCESS });
     localStorage.removeItem("userInfo");
   } catch (error) {

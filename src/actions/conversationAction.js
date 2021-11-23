@@ -10,7 +10,6 @@ import {
   GET_USERS_CONVERSATIONS_SUCCESS,
   GET_USERS_CONVERSATIONS_FAIL,
 } from "../constants/conversationConstants";
-import { URL } from "./url";
 
 export const createConversation = (members) => async (dispatch) => {
   try {
@@ -23,7 +22,7 @@ export const createConversation = (members) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${URL}/api/conversation`,
+      `https://tradeupserver.herokuapp.com/api/conversation`,
       members,
       config
     );
@@ -41,7 +40,9 @@ export const allConversations = (userId) => async (dispatch) => {
   try {
     dispatch({ type: GET_CONVERSATIONS_REQUEST });
 
-    const { data } = await axios.get(`${URL}/api/conversation/${userId}`);
+    const { data } = await axios.get(
+      `https://tradeupserver.herokuapp.com/api/conversation/${userId}`
+    );
 
     dispatch({ type: GET_CONVERSATIONS_SUCCESS, payload: data.conversation });
   } catch (error) {
@@ -56,7 +57,9 @@ export const getUsersCoversations = (userId) => async (dispatch) => {
   try {
     dispatch({ type: GET_USERS_CONVERSATIONS_REQUEST });
 
-    const { data } = await axios.get(`${URL}/api/users/user/${userId}`);
+    const { data } = await axios.get(
+      `https://tradeupserver.herokuapp.com/api/users/user/${userId}`
+    );
 
     dispatch({ type: GET_USERS_CONVERSATIONS_SUCCESS, payload: data.user });
   } catch (error) {

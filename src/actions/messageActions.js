@@ -4,7 +4,6 @@ import {
   CREATE_MESSAGE_SUCCESS,
   CREATE_MESSAGE_FAIL,
 } from "../constants/messageConstants";
-import { URL } from "./url";
 
 export const createMessage = (message) => async (dispatch) => {
   try {
@@ -16,7 +15,11 @@ export const createMessage = (message) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(`${URL}/api/message`, message, config);
+    const { data } = await axios.post(
+      `https://tradeupserver.herokuapp.com/api/message`,
+      message,
+      config
+    );
 
     dispatch({ type: CREATE_MESSAGE_SUCCESS, payload: data.message });
   } catch (error) {
