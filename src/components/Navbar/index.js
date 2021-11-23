@@ -85,11 +85,9 @@ const Navbar = () => {
               </ul>
             </div>
           ) : (
-            !loading && (
-              <Link to="/login" className="px-3">
-                <strong>Login</strong>
-              </Link>
-            )
+            <Link to="/login" className="px-3">
+              <strong>Login</strong>
+            </Link>
           )}
 
           <button className="navbar__sellbutton">

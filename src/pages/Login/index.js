@@ -59,9 +59,10 @@ const Login = ({ history }) => {
           </Link>
         </div>
         <Button
-          disabled={loading ? true : false}
+          // disabled={loading ? true : false}
           type="submit"
-          className={`button mt-3 ${loading ? "disabled" : ""}`}
+          // className={`button mt-3 ${loading ? "disabled" : ""}`}
+          className="button"
         >
           Login
         </Button>

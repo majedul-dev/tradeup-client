@@ -67,9 +67,9 @@ const userByIdFromStorage = localStorage.getItem("userById")
 //   ? JSON.parse(localStorage.getItem("products"))
 //   : null;
 
-// const productDetailFromStorage = localStorage.getItem("productDetail")
-//   ? JSON.parse(localStorage.getItem("productDetail"))
-//   : null;
+const productDetailFromStorage = localStorage.getItem("productDetail")
+  ? JSON.parse(localStorage.getItem("productDetail"))
+  : null;
 
 // const productOffersFromStorage = localStorage.getItem("productOffers")
 //   ? JSON.parse(localStorage.getItem("productOffers"))
@@ -86,6 +86,7 @@ const userByIdFromStorage = localStorage.getItem("userById")
 const initialState = {
   auth: { user: userInfoFromStorage },
   getUserById: userByIdFromStorage,
+  offerDetails: { product: productDetailFromStorage },
 };
 
 const middleware = [thunk];
