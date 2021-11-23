@@ -17,7 +17,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const closePopupProfile = () => setIsOpen(!isOpen);
 
-  const { user, loading, isAuthenticated } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   const logoutHandler = () => {
     dispatch(logout());
