@@ -63,34 +63,29 @@ const userByIdFromStorage = localStorage.getItem("userById")
   ? JSON.parse(localStorage.getItem("userById"))
   : null;
 
-const productsFromStorage = localStorage.getItem("products")
-  ? JSON.parse(localStorage.getItem("products"))
-  : null;
+// const productsFromStorage = localStorage.getItem("products")
+//   ? JSON.parse(localStorage.getItem("products"))
+//   : null;
 
-const productDetailFromStorage = localStorage.getItem("productDetail")
-  ? JSON.parse(localStorage.getItem("productDetail"))
-  : null;
+// const productDetailFromStorage = localStorage.getItem("productDetail")
+//   ? JSON.parse(localStorage.getItem("productDetail"))
+//   : null;
 
-const productOffersFromStorage = localStorage.getItem("productOffers")
-  ? JSON.parse(localStorage.getItem("productOffers"))
-  : null;
+// const productOffersFromStorage = localStorage.getItem("productOffers")
+//   ? JSON.parse(localStorage.getItem("productOffers"))
+//   : null;
 
-const offerDetailsFromStorage = localStorage.getItem("offerDetails")
-  ? JSON.parse(localStorage.getItem("offerDetails"))
-  : null;
+// const offerDetailsFromStorage = localStorage.getItem("offerDetails")
+//   ? JSON.parse(localStorage.getItem("offerDetails"))
+//   : null;
 
-const myOffersFromStorage = localStorage.getItem("myoffers")
-  ? JSON.parse(localStorage.getItem("myoffers"))
-  : null;
+// const myOffersFromStorage = localStorage.getItem("myoffers")
+//   ? JSON.parse(localStorage.getItem("myoffers"))
+//   : null;
 
 const initialState = {
   auth: { user: userInfoFromStorage },
   getUserById: userByIdFromStorage,
-  products: productsFromStorage,
-  productDetails: { product: productDetailFromStorage },
-  myProductOffers: { offers: productOffersFromStorage },
-  offerDetails: { offer: offerDetailsFromStorage },
-  myOffers: { offers: myOffersFromStorage },
 };
 
 const middleware = [thunk];

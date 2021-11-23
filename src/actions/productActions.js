@@ -66,7 +66,7 @@ export const getAllProducts =
 
       dispatch({ type: ALL_PRODUCTS_SUCCESS, payload: data });
 
-      localStorage.setItem("products", JSON.stringify(data));
+      // localStorage.setItem("products", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: ALL_PRODUCTS_FAIL,
@@ -85,7 +85,7 @@ export const productDetailsAction = (productId) => async (dispatch) => {
 
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.product });
 
-    localStorage.setItem("productDetail", JSON.stringify(data.product));
+    // localStorage.setItem("productDetail", JSON.stringify(data.product));
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
